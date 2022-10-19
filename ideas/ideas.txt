@@ -1,0 +1,23 @@
+IDEA1 :
+PAPER : https://arxiv.org/abs/1809.05679
+DATASET : https://www.kaggle.com/datasets/weipengfei/ohr8r52/code
+CODES :
+- https://www.kaggle.com/code/dvircohen0/text-classification-with-word-vectors
+- https://github.com/yao8839836/text_gcn
+EASY EXPLANATION OF THE PAPER : https://analyticsindiamag.com/how-to-use-graph-neural-networks-for-text-classification/
+
+IDEA 2 : 
+PAPER : https://arxiv.org/pdf/2203.00638.pdf#page=11&zoom=100,72,454
+CODE : https://github.com/PKU-DAIR/SGL
+
+IDEA 3 : 
+PAPAER : https://www.ijcai.org/proceedings/2018/0505.pdf
+CODE : https://github.com/VeritasYin/STGCN_IJCAI-18
+EXPLANATION : https://towardsdatascience.com/build-your-first-graph-neural-network-model-to-predict-traffic-speed-in-20-minutes-b593f8f838e5
+
+OTHER RESOURCES :
+
+INTRO ON GNN : https://towardsdatascience.com/a-gentle-introduction-to-graph-neural-network-basics-deepwalk-and-graphsage-db5d540d50b3
+HANDS-ON GNN WITH PYTORCH : https://towardsdatascience.com/hands-on-graph-neural-networks-with-pytorch-pytorch-geometric-359487e221a8
+BEGINNER'S GUIDE WITH GNN PT1 : https://towardsdatascience.com/a-beginners-guide-to-graph-neural-networks-using-pytorch-geometric-part-1-d98dc93e7742
+BEGINNER'S GUIDE WITH GNN PT2 : https://towardsdatascience.com/a-beginners-guide-to-graph-neural-networks-using-pytorch-geometric-part-2-cd82c01330ab
