@@ -1,0 +1,34 @@
+\documentclass{article}
+
+% ------------------------------------------------------
+% PACKAGES
+% ------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+
+% ------------------------------------------------------
+% DIMENSIONS OF THE PAGES
+% ------------------------------------------------------
+\geometry{
+ a4paper,
+ total={190mm,257mm},
+ left = 30mm,
+ right = 30mm,
+ top = 25mm,
+ bottom = 25mm
+}
+
+
+
+\begin{document}
+\input{titlepage.tex}
+\tableofcontents\newpage
+
+\input{chapters/motivations.tex}
+\input{chapters/methods.tex}
+\input{chapters/intended_experiments.tex}
+\input{chapters/references.tex}
+
+\end{document}
