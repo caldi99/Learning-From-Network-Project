@@ -7,6 +7,8 @@
 \usepackage{hyperref}
 \usepackage{geometry}
 \usepackage[utf8]{inputenc}
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
 
 % ------------------------------------------------------
 % DIMENSIONS OF THE PAGES
@@ -25,7 +27,14 @@
 \begin{document}
 \input{titlepage.tex}
 \tableofcontents\newpage
+% ------------------------------------------------------
+% NO IDENTATION
+% ------------------------------------------------------
+\setlength{\parindent}{0pt}
 
+% ------------------------------------------------------
+% CHAPTERS
+% ------------------------------------------------------
 \input{chapters/motivations.tex}
 \input{chapters/methods.tex}
 \input{chapters/intended_experiments.tex}

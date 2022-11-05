@@ -1,0 +1,60 @@
+\section{Methods}
+Text classification is a, supervised problem (i.e. the dataset consists of labelled examples) that, given :
+\begin{itemize}
+    \item A description \( d \in X \) of a document, where \(X\) is the document space.
+    \item A fixed set of classes \(C = {c_1,c_2,...c_n}\) also known as tags or labels.
+\end{itemize}
+The goal is to find a model that, trained with the usage of a training set \(D\), of labelled descriptions of documents i.e. \(<d,c> \in X \times C\), is able to generalize.
+In particular, in the dataset ~\cite{dataset-r8r52ohsumed} that will be used for making the comparisons that will explained later, \(<d,c>\) are couples like the following : 
+\begin{equation}
+    <d,c> = <limbal\hspace{0.15cm}autograft\hspace{0.15cm}reconstruction\hspace{0.15cm}cell\hspace{0.15cm}carcinoma\hspace{0.15cm}patient ... ,\hspace{0.15cm}C04>,
+\end{equation}
+where $C04$ represents 'Neoplasms', which is a cardiovascular disease.
+Using a learning method, then, a classifier \(\gamma\) is returned, which is going to map documents into classes : \(\gamma : X \rightarrow C\).
+\newline
+Therefore, to solve the above explained problem the following learning methods~\cite{paper-text-classification-algorithms} will be implemented:
+\begin{itemize}
+    \item Machine Learning Methods :
+        \begin{itemize}
+            \item Rocchio Classifier.
+            \item Naive Bayes Classifier.
+            \item K-nearest neighbor.
+            \item Support Vector Machine (SVM).
+            \item Decision Tree.
+            \item Boosting/Bagging methods (Random Forest, Adaboost, …).
+            \item Conditional Random Field.
+            \item Word Vectors.
+        \end{itemize}
+    \item Deep Learning Methods :        
+        \begin{itemize}
+            \item Recurrent Neural Networks (RNN).
+            \item Convolutional Neural Network (CNN).
+            \item Recurrent Neural Network (RCNN).
+            \item Graph Convolution Neural Network (GCNN)~\cite{paper-graph-convolution-network}.
+        \end{itemize}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+%In text classification, it is given a description $ d \in X $ of a document, where $X$ is %the document space; and a fixed set of classes $C={c1,…cn}$. Classes are also called tags %or labels. We are given a training set $D$ of labeled documents $<d, c>$, where $<d, c> %\in X \times C$.
+
+%For example, using the dataset we chose ('$oh-r8-r52$'):
+
+
+
+%Using a learning method, we then learn a classifier $\gamma$ that maps documents to classes:
+%\begin{equation}
+%    T : X \rightarrow C
+%\end{equation}
+
+
+%This type of learning is supervised, in fact our dataset consists of labelled examples, %meaning that each data point contains features and an associated label.
+
