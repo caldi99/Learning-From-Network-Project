@@ -34,7 +34,7 @@ class Helper:
         
         return list_paths
     
-    def split_dataset(self, path_dataset_to_split, test_size):
+    def read_and_split_dataset(self, path_dataset_to_split, test_size):
         
         #read dataframe
         dataframe = pd.read_csv(path_dataset_to_split)
