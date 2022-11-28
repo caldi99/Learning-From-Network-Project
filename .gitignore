@@ -1,0 +1,6 @@
+#Folders
+code/common-code/glove-6B-50d/
+code/common-code/__pycache__/
+
+#Files
+*.pyc
