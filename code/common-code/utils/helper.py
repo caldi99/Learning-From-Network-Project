@@ -1,6 +1,8 @@
 import pandas as pd
 import os
 from pathlib import Path
+from sklearn.model_selection import train_test_split
+
 
 class Helper:
     def merge_dataset(self,path_list_csv_to_merge):
@@ -31,3 +33,13 @@ class Helper:
             list_paths.append(os.path.join(path_list_csv,file_name))
         
         return list_paths
+    
+    def split_dataset(self, path_dataset_to_split, test_size):
+        
+        #read dataframe
+        dataframe = pd.read_csv(path_dataset_to_split)
+
+        #return splitted datframe
+        return train_test_split(dataframe, test_size = test_size)
+
+
