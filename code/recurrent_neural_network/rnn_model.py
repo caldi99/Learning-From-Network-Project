@@ -92,9 +92,6 @@ class RNNModel:
         y_train = vectorizer.convert_targets_to_vector(y_train_raw,dataset_type)
         y_test = vectorizer.convert_targets_to_vector(y_test_raw,dataset_type)
 
-        print(X_train.shape)
-        print(y_train.shape)
-
         word_index = vectorizer.get_unique_tokens(X_train_raw,X_test_raw)
         embeddings_index = vectorizer.get_unique_tokens_glove()
         
@@ -104,5 +101,6 @@ class RNNModel:
                   epochs = configs.RNN_EPOCHS,
                   batch_size = configs.RNN_BATCH_SIZE
         )
-        predicted = model.predict(X_test)
+        predicted = np.argmax(model.predict(X_test),axis = 1)
+        print(predicted)        
         return metrics.classification_report(y_test, predicted)
