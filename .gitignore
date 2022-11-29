@@ -1,6 +1,8 @@
 #Folders
-code/common-code/glove-6B-50d/
-code/common-code/__pycache__/
+code/config/__pycache__/
+code/recurrent_neural_network/__pycache__/
+code/utils/__pycache__/
+glove_6B_50d/
 
 #Files
 *.pyc
