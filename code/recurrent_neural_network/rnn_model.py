@@ -104,5 +104,5 @@ class RNNModel:
                   epochs = configs.RNN_EPOCHS,
                   batch_size = configs.RNN_BATCH_SIZE
         )
-        predicted = model.predict_classes(X_test)
+        predicted = model.predict(X_test)
         return metrics.classification_report(y_test, predicted)

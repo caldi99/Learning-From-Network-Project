@@ -44,7 +44,7 @@ OPTIMIZER_ADAM = "adam"
 #METRICS
 ACCURACY_METRIC= "accuracy"
 #MAXIMUM NUMBER WORDS
-MAXIMUM_NUMBER_WORDS = 100
+MAXIMUM_NUMBER_WORDS = 50
 
 
 # ------------------------------------------------------------------------
