@@ -56,6 +56,15 @@ class RNNModel:
         return model
 
     def train_model(self,train_percentage,dataset_type):
+        """
+            This function trains the Recurrent Neural Network model and provide the results
+            train_percentage :
+                Percentage of data to use for training
+            dataset_type :
+                Type of the dataset to use
+            return :
+                The classification report obtained after training
+        """
         
         path_dataset = ""
         n_classes = 0
@@ -95,12 +104,17 @@ class RNNModel:
         word_index = vectorizer.get_unique_tokens(X_train_raw,X_test_raw)
         embeddings_index = vectorizer.get_unique_tokens_glove()
         
+        #Build Model
         model = self.build_model(word_index,embeddings_index, n_classes)
+
+        #Train Model
         model.fit(X_train, y_train,
                   validation_data=(X_test, y_test),
                   epochs = configs.RNN_EPOCHS,
                   batch_size = configs.RNN_BATCH_SIZE
         )
+
+        #Compute Predictions
         predicted = np.argmax(model.predict(X_test),axis = 1)
         print(predicted)        
         return metrics.classification_report(y_test, predicted)

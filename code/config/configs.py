@@ -56,3 +56,8 @@ RNN_NUMBER_DENSE_LAYERS = 256
 RNN_RECURRENT_DROPOUT = 0.2
 RNN_EPOCHS = 10
 RNN_BATCH_SIZE = 128
+
+# ------------------------------------------------------------------------
+# BOOSTING PARAMETERS
+# ------------------------------------------------------------------------
+BOOSTING_NUMBER_ESTIMATORS = 100
