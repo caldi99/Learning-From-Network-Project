@@ -85,7 +85,7 @@ class RCNNModel:
 
     def train_model(self, train_percentage, dataset_type):
         """
-            This function trains the Recurrent Neural Network model and provide the results
+            This function trains the Recurrent Convolutional Neural Network model and provide the results
             train_percentage :
                 Percentage of data to use for training
             dataset_type :
