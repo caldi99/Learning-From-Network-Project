@@ -42,4 +42,5 @@ class Helper:
         #return splitted datframe
         return train_test_split(dataframe, train_size = train_percentage)
 
-
+    def read_dataset(self, path_dataset):
+        return pd.read_csv(path_dataset)

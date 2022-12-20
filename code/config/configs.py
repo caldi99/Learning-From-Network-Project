@@ -61,3 +61,11 @@ RNN_BATCH_SIZE = 128
 # BOOSTING PARAMETERS
 # ------------------------------------------------------------------------
 BOOSTING_NUMBER_ESTIMATORS = 100
+
+# ------------------------------------------------------------------------
+# GCNN PARAMETERS
+# ------------------------------------------------------------------------
+GCNN_THRESHOLD_WORD_FREQUENCY = 5
+GCNN_LANGUAGE_WORDS = "english"
+GCNN_WINDOW_SIZE = 20
+GCNN_TFID_VECTORIZER_MAX_FEATURES = 1000
