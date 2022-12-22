@@ -65,7 +65,19 @@ BOOSTING_NUMBER_ESTIMATORS = 100
 # ------------------------------------------------------------------------
 # GCNN PARAMETERS
 # ------------------------------------------------------------------------
-GCNN_THRESHOLD_WORD_FREQUENCY = 5
+FILE_OPEN_MODALITY = "a"
+
+GCNN_PATH_DATASET_SPLIT = BASE_PATH + "\\code\\graph_convolutional_neural_network\\datasets\\"
+GCNN_PATH_DUMP_OBJECTS = GCNN_PATH_DATASET_SPLIT + "dumpS\\"
+GCNN_PATH_DATASET_CORPUS = GCNN_PATH_DATASET_SPLIT + "corpus\\"
+GCNN_DATASET_FILE_FORMAT = ".txt"
+
 GCNN_LANGUAGE_WORDS = "english"
+GCNN_TYPE_WORDS = "stopwords"
+GCNN_THRESHOLD_WORD_FREQUENCY = 5
+GCNN_WORD_EMBEDDINGS_DIM = 50
 GCNN_WINDOW_SIZE = 20
-GCNN_TFID_VECTORIZER_MAX_FEATURES = 1000
+
+GCNN_EPHOCS = 10
+GCNN_EARLY_STOPPING = 3
+GCNN_LEARNING_RATE = 0.02

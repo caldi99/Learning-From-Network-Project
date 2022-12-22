@@ -3,6 +3,7 @@ code/config/__pycache__/
 code/recurrent_neural_network/__pycache__/
 code/utils/__pycache__/
 glove_6B_50d/
+code/graph_convolutional_neural_network/datasets/
 
 #Files
 *.pyc
