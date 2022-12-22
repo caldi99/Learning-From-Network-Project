@@ -67,6 +67,7 @@ BOOSTING_NUMBER_ESTIMATORS = 100
 # ------------------------------------------------------------------------
 FILE_OPEN_MODALITY = "a"
 
+#Paths
 GCNN_PATH_DATASET_SPLIT = BASE_PATH + "\\code\\graph_convolutional_neural_network\\datasets\\"
 GCNN_PATH_DUMP_OBJECTS = GCNN_PATH_DATASET_SPLIT + "dumpS\\"
 GCNN_PATH_DATASET_CORPUS = GCNN_PATH_DATASET_SPLIT + "corpus\\"
