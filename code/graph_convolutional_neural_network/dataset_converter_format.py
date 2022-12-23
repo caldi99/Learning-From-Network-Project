@@ -10,7 +10,7 @@ import re
 import random
 import numpy as np
 import pickle as pkl
-
+import os
 
 class DatasetConverterFormat:
     def convert_dataset(self, dataset_type, train_val_percentage, train_test_percentage):  
@@ -202,8 +202,13 @@ class DatasetConverterFormat:
             path_file :
                 Path where to save the list
         """
-        file = open(path_file, configs.FILE_OPEN_MODALITY)
+        #Select modality 
+        if(os.path.exists(path_file)):
+            modality = configs.FILE_OPEN_MODALITY
+        else:
+            modality = "w"
 
+        file = open(path_file, modality)
         for elem in list_to_save:
             file.write("{}\n".format(elem))
         file.close()
@@ -220,8 +225,13 @@ class DatasetConverterFormat:
             path_file :
                 Path of where to save such file
         """
-        file = open(path_file, configs.FILE_OPEN_MODALITY)
-        
+        #Select modality 
+        if(os.path.exists(path_file)):
+            modality = configs.FILE_OPEN_MODALITY
+        else:
+            modality = "w"
+
+        file = open(path_file, modality)        
         index = start_index
         for i, row in dataframe.iterrows():      
             file.write("{}\t{}\t{}\n".format(index,set_type,row[configs.FIELD_CSV_INTENT]))
