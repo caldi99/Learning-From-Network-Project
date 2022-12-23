@@ -27,7 +27,8 @@ class DatasetConverterFormat:
         nltk.download('wordnet')
         #Download stopwords
         nltk.download("stopwords")
-        
+        #Download omw-1.4
+        nltk.download('omw-1.4')
         #Get Path of the Dataset
         path_dataset = ""
         if (dataset_type == "R8"):
