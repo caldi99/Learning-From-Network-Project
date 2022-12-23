@@ -23,6 +23,11 @@ class DatasetConverterFormat:
             train_test_percentage :
                 Percentage of the dataset to use as training and validation
         """      
+        #download wordnet
+        nltk.download('wordnet')
+        #Download stopwords
+        nltk.download("stopwords")
+        
         #Get Path of the Dataset
         path_dataset = ""
         if (dataset_type == "R8"):
@@ -202,13 +207,7 @@ class DatasetConverterFormat:
             path_file :
                 Path where to save the list
         """
-        #Select modality 
-        if(os.path.exists(path_file)):
-            modality = configs.FILE_OPEN_MODALITY
-        else:
-            modality = "w"
-
-        file = open(path_file, modality)
+        file = open(path_file, configs.FILE_OPEN_MODALITY)
         for elem in list_to_save:
             file.write("{}\n".format(elem))
         file.close()
@@ -225,13 +224,7 @@ class DatasetConverterFormat:
             path_file :
                 Path of where to save such file
         """
-        #Select modality 
-        if(os.path.exists(path_file)):
-            modality = configs.FILE_OPEN_MODALITY
-        else:
-            modality = "w"
-
-        file = open(path_file, modality)        
+        file = open(path_file, configs.FILE_OPEN_MODALITY)        
         index = start_index
         for i, row in dataframe.iterrows():      
             file.write("{}\t{}\t{}\n".format(index,set_type,row[configs.FIELD_CSV_INTENT]))
@@ -283,9 +276,6 @@ class DatasetConverterFormat:
             return :
                 The word vectors
         """
-        #download wordnet
-        nltk.download('wordnet')
-
         #Create vectorizer
         tfidf_vec = TfidfVectorizer(max_features = configs.GCNN_WORD_EMBEDDINGS_DIM) 
         tfidf_matrix_array = tfidf_vec.fit_transform(vocabulary_definitions).toarray()
@@ -344,9 +334,6 @@ class DatasetConverterFormat:
             return :
                 The corpus of a dataset without words that are stopwords and are not frequent
         """
-        #Download stopwords
-        nltk.download("stopwords")
-
         #Get english stopwords
         stop_words = set(stopwords.words(configs.GCNN_LANGUAGE_WORDS))
 
