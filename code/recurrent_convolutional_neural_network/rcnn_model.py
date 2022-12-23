@@ -5,6 +5,7 @@ from keras.layers import Embedding
 from keras.layers import GRU
 from keras.layers import LSTM
 from keras.layers import Conv1D, MaxPooling1D
+from keras.callbacks import EarlyStopping
 import numpy as np
 from sklearn import metrics
 
@@ -77,7 +78,8 @@ class RCNNModel:
         # Compile Model
         model.compile(loss=configs.LOSS_SPARSE_CATEGORICAL_CROSS_ENTROPY,
                       optimizer=configs.OPTIMIZER_ADAM,
-                      metrics=[configs.ACCURACY_METRIC])
+                      metrics=[configs.ACCURACY_METRIC]
+        )
 
         model.summary()
 
@@ -148,12 +150,20 @@ class RCNNModel:
         # Build Model
         model = self.build_model(word_index, embeddings_index, n_classes)
 
+        #Define callback
+        callback = EarlyStopping(
+            mode='min',
+            monitor='val_loss',
+            patience=10
+        )
+
         # Train Model
         model.fit(X_train, y_train,
                   validation_data=(X_val, y_val),
                   epochs=configs.RCNN_EPOCHS,
-                  batch_size=configs.RCNN_BATCH_SIZE
-                  )
+                  batch_size=configs.RCNN_BATCH_SIZE,
+                  callbacks=[callback]
+        )
 
         # Compute Predictions
         predicted = np.argmax(model.predict(X_test), axis=1)

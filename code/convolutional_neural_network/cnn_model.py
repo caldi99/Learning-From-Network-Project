@@ -8,6 +8,7 @@ from keras.layers import Conv1D
 from keras.layers import MaxPool1D
 from keras.layers import Flatten
 from keras.layers import Concatenate
+from keras.callbacks import EarlyStopping
 from sklearn import metrics
 import pandas as pd
 
@@ -18,7 +19,6 @@ from utils.vectorizer import Vectorizer
 class CNNModel:
 
     def build_model(self, word_index, embeddings_index, n_classes, EMBEDDING_DIM = 50, dropout = 0.5):
-
         embedding_matrix = np.random.random((len(word_index) + 1, EMBEDDING_DIM))
         for word, i in word_index.items():
             embedding_vector = embeddings_index.get(word)
@@ -86,10 +86,18 @@ class CNNModel:
 
         model = Model(sequence_input, preds)
 
+        #Define callback
+        callback = EarlyStopping(
+            mode='min',
+            monitor='val_loss',
+            patience=10
+        )
+
         # Compile model
         model.compile(loss=configs.LOSS_SPARSE_CATEGORICAL_CROSS_ENTROPY,
                       optimizer=configs.OPTIMIZER_ADAM,
-                      metrics=[configs.ACCURACY_METRIC])
+                      metrics=[configs.ACCURACY_METRIC]
+        )
 
         model.summary()
 
@@ -161,12 +169,20 @@ class CNNModel:
         # Build Model
         model = self.build_model(word_index, embeddings_index, n_classes)
 
+        #Define callback
+        callback = EarlyStopping(
+            mode='min',
+            monitor='val_loss',
+            patience=10
+        )
+
         # Train Model
         model.fit(X_train, y_train,
                   validation_data=(X_val, y_val),
                   epochs=configs.CNN_EPOCHS,
-                  batch_size=configs.CNN_BATCH_SIZE
-                  )
+                  batch_size=configs.CNN_BATCH_SIZE,
+                  callbacks = [callback]
+        )
 
         # Compute Predictions
         predicted = np.argmax(model.predict(X_test), axis=1)

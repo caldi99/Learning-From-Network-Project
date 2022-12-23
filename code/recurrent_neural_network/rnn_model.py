@@ -4,6 +4,8 @@ from keras.layers import Dropout
 from keras.layers import Dense
 from keras.layers import GRU
 from keras.layers import Embedding
+from keras.callbacks import EarlyStopping
+
 from sklearn import metrics
 import pandas as pd
 
@@ -120,11 +122,19 @@ class RNNModel:
         #Build Model
         model = self.build_model(word_index,embeddings_index, n_classes)
 
+        #Define callback
+        callback = EarlyStopping(
+            mode='min',
+            monitor='val_loss',
+            patience=10
+        )
+
         #Train Model
         model.fit(X_train, y_train,
                   validation_data=(X_val, y_val),
                   epochs = configs.RNN_EPOCHS,
-                  batch_size = configs.RNN_BATCH_SIZE
+                  batch_size = configs.RNN_BATCH_SIZE,
+                  callbacks=[callback]
         )
 
         #Compute Predictions
