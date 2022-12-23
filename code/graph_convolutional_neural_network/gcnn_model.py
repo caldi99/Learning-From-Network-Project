@@ -178,7 +178,7 @@ class GCNNModel:
         weight = torch.from_numpy(adj.data.astype(np.float32))
         g.ndata['d'] = torch.from_numpy(adjd.astype(np.float32))
         g.edata['w'] = weight       
-        #g.to(torch.device('cuda:0')) TODO : YOU NEED TO DOWNLOAD CUDA : VERSION SUPPORTED 11.3, 11.6 (I HAVE 11.2)
+        g = g.to(torch.device('cuda:0')) 
         
         return g
 
