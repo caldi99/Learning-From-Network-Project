@@ -35,39 +35,42 @@ class Vectorizer:
 
         return np.array(ret_list)
     
-    def convert_phrases_to_vector(self,phrases_train : list, phrases_test : list) -> tuple:
+    def convert_phrases_to_vector(self,phrases_train : list, phrases_val : list, phrases_test : list) -> tuple:
         """
             This function convert train phrases and test phrases into vectors
             phrases_train :
                 The list of training phareses to convert
+            phrases_val :
+                The list of validation phrases to convert
             phrases_test :
                 The list of test phrases to convert
             return :
-                A tuple that represent the embeddings for training and test phrases
+                A tuple that represent the embeddings for training validation and test phrases
         """
-        union = np.array(np.concatenate((phrases_train,phrases_test), axis = 0))
+        union = np.array(np.concatenate((phrases_train, phrases_val, phrases_test), axis = 0))
         tokenizer = Tokenizer(num_words = configs.MAXIMUM_NUMBER_WORDS)
         tokenizer.fit_on_texts(union)
         union = pad_sequences(tokenizer.texts_to_sequences(union), 
                             maxlen = configs.MAXIMUM_NUMBER_WORDS)        
         union = union[np.arange(union.shape[0])]
-        train = union[0:len(phrases_train),]
-        test = union[len(phrases_train):,]
+        train = union[0 : len(phrases_train) , ]
+        val = union[len(phrases_train) : len(phrases_train) + len(phrases_val),]
+        test = union[len(phrases_train) + len(phrases_val) : ,]
 
-        return (train,test)
+        return (train, val, test)
     
-    def get_unique_tokens(self,phrases_train : list, phrases_test : list) -> dict:
+    def get_unique_tokens(self,phrases_train : list, phrases_val : list) -> dict:
         """
             This function returns the unique tokens inside the train and test phrases
             phrases_train :
                 The list of training phrases 
-            phrases_test :
+            phrases_val :
                 The list of test phrases to convert
             return :
                 A dictionary containing the unique tokens with their coresponding positions
         """
 
-        union = np.array(np.concatenate((phrases_train,phrases_test), axis = 0))
+        union = np.array(np.concatenate((phrases_train,phrases_val), axis = 0))
         tokenizer = Tokenizer(num_words = configs.MAXIMUM_NUMBER_WORDS)
         tokenizer.fit_on_texts(union)
 

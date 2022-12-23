@@ -55,11 +55,13 @@ class RNNModel:
         #Return Model
         return model
 
-    def train_model(self,train_percentage,dataset_type):
+    def train_model(self,train_test_percentage, train_val_percentage,dataset_type):
         """
             This function trains the Recurrent Neural Network model and provide the results
-            train_percentage :
-                Percentage of data to use for training
+            train_test_percentage :
+                Percentage of data to use for training w.r.t. whole dataset
+            train_val_percentage :
+                Percentage of data to use for validation w.r.t. trainining + validataion set
             dataset_type :
                 Type of the dataset to use
             return :
@@ -86,22 +88,33 @@ class RNNModel:
         vectorizer = Vectorizer()
 
         #Read Dataset and split
-        dataframe_train, dataframe_test = helper.read_and_split_dataset(path_dataset, train_percentage)
+        dataframe_train_test, dataframe_test_test = helper.read_and_split_dataset(path_dataset, train_test_percentage)
         
-        #Build Raw dataset
-        X_train_raw = dataframe_train[configs.FIELD_CSV_TEXT]
-        y_train_raw = dataframe_train[configs.FIELD_CSV_INTENT]
+        #Split into validation and training
+        X_train_val_raw = dataframe_train_test[configs.FIELD_CSV_TEXT]
+        y_train_val_raw = dataframe_train_test[configs.FIELD_CSV_INTENT]
 
-        X_test_raw = dataframe_test[configs.FIELD_CSV_TEXT]
-        y_test_raw = dataframe_test[configs.FIELD_CSV_INTENT]
+        #Compute size train and validation
+        train_size = int(len(X_train_val_raw) * train_val_percentage)
+        val_size = len(X_train_val_raw) - train_size
 
-        #Convert training and testing data to the correct type
-        (X_train,X_test) = vectorizer.convert_phrases_to_vector(X_train_raw,X_test_raw)
+        #Compute Raw dataset
+        X_train_raw = X_train_val_raw[:train_size]
+        X_val_raw = X_train_val_raw[train_size:]
+        X_test_raw = dataframe_test_test[configs.FIELD_CSV_TEXT]
+        
+        y_train_raw = y_train_val_raw[:train_size]
+        y_val_raw = y_train_val_raw[train_size:]
+        y_test_raw = dataframe_test_test[configs.FIELD_CSV_INTENT]
 
-        y_train = vectorizer.convert_targets_to_vector(y_train_raw,dataset_type)
-        y_test = vectorizer.convert_targets_to_vector(y_test_raw,dataset_type)
+        # Convert training and testing data to the correct type
+        (X_train, X_val, X_test) = vectorizer.convert_phrases_to_vector(X_train_raw, X_val_raw, X_test_raw)
 
-        word_index = vectorizer.get_unique_tokens(X_train_raw,X_test_raw)
+        y_train = vectorizer.convert_targets_to_vector(y_train_raw, dataset_type)
+        y_val = vectorizer.convert_targets_to_vector(y_val_raw, dataset_type)
+        y_test = vectorizer.convert_targets_to_vector(y_test_raw, dataset_type)
+
+        word_index = vectorizer.get_unique_tokens(X_train_raw, X_val_raw)
         embeddings_index = vectorizer.get_unique_tokens_glove()
         
         #Build Model
@@ -109,7 +122,7 @@ class RNNModel:
 
         #Train Model
         model.fit(X_train, y_train,
-                  validation_data=(X_test, y_test),
+                  validation_data=(X_val, y_val),
                   epochs = configs.RNN_EPOCHS,
                   batch_size = configs.RNN_BATCH_SIZE
         )
