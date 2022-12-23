@@ -6,12 +6,12 @@ from pathlib import Path
 #BASE PATH
 BASE_PATH = str(Path(__file__).parent.parent.parent.resolve())
 #PATHS DATASETS
-PATH_BASE_DATASET = BASE_PATH + "\\datasets\\"
-PATH_R8_DATASET = PATH_BASE_DATASET + "r8\\"
-PATH_OH_DATASET = PATH_BASE_DATASET + "oh\\"
-PATH_R52_DATASET = PATH_BASE_DATASET + "r52\\"
+PATH_BASE_DATASET = BASE_PATH + "/datasets/"
+PATH_R8_DATASET = PATH_BASE_DATASET + "r8/"
+PATH_OH_DATASET = PATH_BASE_DATASET + "oh/"
+PATH_R52_DATASET = PATH_BASE_DATASET + "r52/"
 #PATH glove.6B.50d.txt 
-PATH_GLOVE_6B_50D = BASE_PATH + "\\glove_6B_50d\\glove.6B.50d.txt"
+PATH_GLOVE_6B_50D = BASE_PATH + "/glove_6B_50d/glove.6B.50d.txt"
 
 # ------------------------------------------------------------------------
 # DATASETS INFOS
@@ -93,9 +93,9 @@ RCNN_BATCH_SIZE = 128
 # ------------------------------------------------------------------------
 # GCNN PARAMETERS
 # ------------------------------------------------------------------------
-GCNN_PATH_DATASET_SPLIT = BASE_PATH + "\\code\\graph_convolutional_neural_network\\datasets\\"
-GCNN_PATH_DUMP_OBJECTS = GCNN_PATH_DATASET_SPLIT + "dumpS\\"
-GCNN_PATH_DATASET_CORPUS = GCNN_PATH_DATASET_SPLIT + "corpus\\"
+GCNN_PATH_DATASET_SPLIT = BASE_PATH + "/code/graph_convolutional_neural_network/datasets/"
+GCNN_PATH_DUMP_OBJECTS = GCNN_PATH_DATASET_SPLIT + "dumps/"
+GCNN_PATH_DATASET_CORPUS = GCNN_PATH_DATASET_SPLIT + "corpus/"
 GCNN_DATASET_FILE_FORMAT = ".txt"
 GCNN_LANGUAGE_WORDS = "english"
 GCNN_TYPE_WORDS = "stopwords"
