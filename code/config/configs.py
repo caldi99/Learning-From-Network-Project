@@ -45,7 +45,8 @@ OPTIMIZER_ADAM = "adam"
 ACCURACY_METRIC= "accuracy"
 #MAXIMUM NUMBER WORDS
 MAXIMUM_NUMBER_WORDS = 50
-
+#FILE OPEN MODALITY
+FILE_OPEN_MODALITY = "a"
 
 # ------------------------------------------------------------------------
 # RNN PARAMETERS
@@ -63,22 +64,33 @@ RNN_BATCH_SIZE = 128
 BOOSTING_NUMBER_ESTIMATORS = 100
 
 # ------------------------------------------------------------------------
+# CNN PARAMETERS
+# ------------------------------------------------------------------------
+CNN_NUMBER_HIDDEN_LAYERS = 5
+CNN_NUMBER_FILTERS = 128
+CNN_MAX_POOLING_SIZE_FIRST_LAYER = 5
+CNN_KERNEL_SIZE = 5
+CNN_NUMBER_DENSE_LAYER_FIRST = 1024
+CNN_NUMBER_DENSE_LAYER_SECOND = 512
+CNN_MAX_POOLING_SIZE_SECOND_LAYER = 30
+
+# ------------------------------------------------------------------------
+# RCNN PARAMETERS
+# ------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------
 # GCNN PARAMETERS
 # ------------------------------------------------------------------------
-FILE_OPEN_MODALITY = "a"
-
-#Paths
 GCNN_PATH_DATASET_SPLIT = BASE_PATH + "\\code\\graph_convolutional_neural_network\\datasets\\"
 GCNN_PATH_DUMP_OBJECTS = GCNN_PATH_DATASET_SPLIT + "dumpS\\"
 GCNN_PATH_DATASET_CORPUS = GCNN_PATH_DATASET_SPLIT + "corpus\\"
 GCNN_DATASET_FILE_FORMAT = ".txt"
-
 GCNN_LANGUAGE_WORDS = "english"
 GCNN_TYPE_WORDS = "stopwords"
 GCNN_THRESHOLD_WORD_FREQUENCY = 5
-GCNN_WORD_EMBEDDINGS_DIM = 50
+GCNN_WORD_EMBEDDINGS_DIM = 300
 GCNN_WINDOW_SIZE = 20
-
-GCNN_EPHOCS = 10
-GCNN_EARLY_STOPPING = 3
+GCNN_EPHOCS = 100
+GCNN_EARLY_STOPPING = 10
 GCNN_LEARNING_RATE = 0.02

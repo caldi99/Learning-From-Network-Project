@@ -7,7 +7,7 @@ from keras.layers import Input
 from keras.layers import Conv1D
 from keras.layers import MaxPool1D
 from keras.layers import Flatten
-from keras.layers.merging import Concatenate
+from keras.layers import Concatenate
 from sklearn import metrics
 import pandas as pd
 
@@ -67,7 +67,7 @@ class CNNModel:
                          kernel_size = configs.CNN_KERNEL_SIZE,
                          activation = configs.ACTIVATION_FUNCTION_RELU)(l_pool1)
         l_conv2 = Dropout(dropout)(l_conv2)
-        l_pool2 = MaxPool1D(configs.CNN_MAX_POOLING_SIZE_FIRST_LAYER)(l_conv2)
+        l_pool2 = MaxPool1D(configs.CNN_MAX_POOLING_SIZE_SECOND_LAYER)(l_conv2)
 
         # Flatten Layer
         l_flat = Flatten()(l_pool2)
@@ -96,11 +96,13 @@ class CNNModel:
         # Return Model
         return model
 
-    def train_model(self, train_percentage, dataset_type):
+    def train_model(self, train_test_percentage, train_val_percentage, dataset_type):
         """
             This function trains the Convolutional Neural Network model and provide the results
-            train_percentage :
-                Percentage of data to use for training
+            train_test_percentage :
+                Percentage of data to use for training w.r.t. whole dataset
+            train_val_percentage :
+                Percentage of data to use for validation w.r.t. trainining + validataion set
             dataset_type :
                 Type of the dataset to use
             return :
@@ -125,24 +127,35 @@ class CNNModel:
 
         helper = Helper()
         vectorizer = Vectorizer()
+        
+        #Read Dataset and split
+        dataframe_train_test, dataframe_test_test = helper.read_and_split_dataset(path_dataset, train_test_percentage)
 
-        # Read Dataset and split
-        dataframe_train, dataframe_test = helper.read_and_split_dataset(path_dataset, train_percentage)
+        #Split into validation and training
+        X_train_val_raw = dataframe_train_test[configs.FIELD_CSV_TEXT]
+        y_train_val_raw = dataframe_train_test[configs.FIELD_CSV_INTENT]
 
-        # Build Raw dataset
-        X_train_raw = dataframe_train[configs.FIELD_CSV_TEXT]
-        y_train_raw = dataframe_train[configs.FIELD_CSV_INTENT]
+        #Compute size train and validation
+        train_size = int(len(X_train_val_raw) * train_val_percentage)
+        val_size = len(X_train_val_raw) - train_size
 
-        X_test_raw = dataframe_test[configs.FIELD_CSV_TEXT]
-        y_test_raw = dataframe_test[configs.FIELD_CSV_INTENT]
+        #Compute Raw dataset
+        X_train_raw = X_train_val_raw[:train_size]
+        X_val_raw = X_train_val_raw[train_size:]
+        X_test_raw = dataframe_test_test[configs.FIELD_CSV_TEXT]
+        
+        y_train_raw = y_train_val_raw[:train_size]
+        y_val_raw = y_train_val_raw[train_size:]
+        y_test_raw = dataframe_test_test[configs.FIELD_CSV_INTENT]
 
         # Convert training and testing data to the correct type
-        (X_train, X_test) = vectorizer.convert_phrases_to_vector(X_train_raw, X_test_raw)
+        (X_train, X_val, X_test) = vectorizer.convert_phrases_to_vector(X_train_raw, X_val_raw, X_test_raw)
 
         y_train = vectorizer.convert_targets_to_vector(y_train_raw, dataset_type)
+        y_val = vectorizer.convert_targets_to_vector(y_val_raw, dataset_type)
         y_test = vectorizer.convert_targets_to_vector(y_test_raw, dataset_type)
 
-        word_index = vectorizer.get_unique_tokens(X_train_raw, X_test_raw)
+        word_index = vectorizer.get_unique_tokens(X_train_raw, X_val_raw)
         embeddings_index = vectorizer.get_unique_tokens_glove()
 
         # Build Model
@@ -150,7 +163,7 @@ class CNNModel:
 
         # Train Model
         model.fit(X_train, y_train,
-                  validation_data=(X_test, y_test),
+                  validation_data=(X_val, y_val),
                   epochs=configs.CNN_EPOCHS,
                   batch_size=configs.CNN_BATCH_SIZE
                   )
