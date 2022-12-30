@@ -1,0 +1,15 @@
+\section{Datasets}
+To carry out the experiments three different Datasets will be used. Each one, has a different number of classes and entries, in this way, we can test our models in different scenario in order to evaluate in all the possible cases. In particular, the Dataset~\cite{dataset-r8r52ohsumed} used, is the combination of three Datasets that are called, respectively : \textbf{R8}, \textbf{R52}, \textbf{Ohsumed} and, have the following characteristics :
+\begin{itemize}
+    \item \textbf{R8} and \textbf{R52} : are subsets of \textbf{Reuters}~\cite{dataset-reuters} 21578 Dataset which is composed of 12902 documents with 90 classes.
+    \item \textbf{Ohsumed} : is a dataset~\cite{dataset-ohsumed} built by excrating medical abstracts from the \textbf{MEDLINE} database. In particular, it consists of medical abstracts from the \textbf{MeSH} categories of the year 1991 and provides 23 cardiovascular diseases categories as classes.
+\end{itemize}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}\hline
+        Dataset & \# Train & \# Test & \# Categories & Avg. Length\\\hline
+        R8 & 5485 & 2189 & 8 & 65.72 \\\hline
+        R52 & 6532 & 2568 & 52 & 69.82 \\\hline
+        Ohsumed & 3357 & 4043 & 23 & 135.82 \\\hline
+    \end{tabular}
+\end{center}
+For each Dataset, the table above displays the number of train/test entries, categories, and average length of entries.

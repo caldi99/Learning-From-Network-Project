@@ -1,0 +1,9 @@
+\section{Conclusions}
+The results obtained are the following :
+\begin{itemize}
+    \item As expected the Graph Convolutional Neural Network (GCNN), which is the state of the art in text classification problem, obtained on average the best performances compared to the other methods.    
+    \item If we consider the results on the single dataset, however, Convulutional Neural Network (CNN) and Recurrent Neural Network (RNN) are the ones that performed better, even if slightly, on the datasets R8 and R52, while on the OH dataset the GCNN performed significantly better over the other models of roughly 15\%. 
+    \item An other result as expected is the one that consist of analyzing the performances by changing the size of the training-validation percentages. In particular, what has been obtained is that reducing the size of the training set,  results has decreased of roughly 5\%. In particular, in OH dataset, in which the average length of the phrases are the longest one, we notice a decrease of performances in this change of size between training ad validation set.
+\end{itemize}
+Finally, the GCNN is the method that adapts better not only because of its performances but also because of its training time. In fact, for training the GCNN in the worst case scenario only 20 minutes where required, while, for others top performance method (RNN, RCNN) in the worst case it took between 3 and 3 and an half hours for training.
+Notice that those results where computed with same CPU and GPU.

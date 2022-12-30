@@ -1,0 +1,127 @@
+\section{Results}
+In this section we report the \textbf{results}~\cite{github-code} that we have obtained. In particular, in the following we will list the values of \textbf{Precision}, \textbf{Recall}, \textbf{F1-Score}, \textbf{Accuracy} obtained across the different models as well as across the different datasets.
+In addition to that, we are also going to list two main sets of results due to the choice of splitting the dataset as follow :
+\begin{itemize}
+    \item 70\% used for Training and Validation, which was splitted as well as, into two main ways :
+        \begin{itemize}
+            \item Train 80\% and Validation 20\%.
+            \item Train 70\% and Validation 30\%.
+        \end{itemize}
+    \item 30\% used for Testing.
+\end{itemize}
+
+In the following, we will list the results obtained :
+
+\begin{itemize}
+    \item Train 80\% and Validation 20\%:
+    \begin{itemize}
+        \item \textbf{Precision} : 
+            \newline
+            \begin{tabular}{|c|c|c|c|}\hline
+                \textbf{Model} &  \textbf{R8} & \textbf{OH} & \textbf{R52} \\\hline
+                Bagging & 0.93 & 0.46 & 0.87 \\\hline
+                Boosting & 0.95 & 0.64 &  0.89\\\hline
+                Convolutional Neural Network (CNN) & \textbf{0.97} & 0.75 & 0.96\\\hline
+                Recurrent Convolutional Neural Network (RCNN) & 0.95 & 0.03 &  0.91\\\hline
+                Recurrent Neural Network (RNN) & \textbf{0.97} & 0.74  & \textbf{0.98} \\\hline
+                Rocchio Classifier & 0.85 & 0.38 & 0.79 \\\hline
+                Support Vector Machine (SVM) & 0.92 & 0.46 & 0.85 \\\hline
+                Graph Convolutional Neural Network (GCNN) & 0.95 & \textbf{0.85} & 0.90\\\hline
+            \end{tabular}
+        \item \textbf{Recall} :
+            \newline
+            \begin{tabular}{|c|c|c|c|}\hline
+                 \textbf{Model} & \textbf{R8} & \textbf{OH} & \textbf{R52} \\\hline
+                Bagging & 0.93 & 0.47 & 0.87 \\\hline
+                Boosting & 0.95 & 0.62 &  0.89\\\hline
+                Convolutional Neural Network (CNN) & \textbf{0.97} & 0.70 & 0.95 \\\hline
+                Recurrent Convolutional Neural Network (RCNN) & 0.95 & 0.17 &  0.91\\\hline
+                Recurrent Neural Network (RNN) & \textbf{0.97} & 0.74 & \textbf{0.98} \\\hline
+                Rocchio Classifier & 0.85 & 0.27 &  0.64\\\hline
+                Support Vector Machine (SVM) & 0.92 & 0.48 &  0.86\\\hline
+                Graph Convolutional Neural Network (GCNN) & 0.96 & \textbf{0.85} & 0.93\\\hline
+            \end{tabular}
+        \item \textbf{F1-Score} :
+            \newline
+            \begin{tabular}{|c|c|c|c|}\hline
+                 \textbf{Model} & \textbf{R8} & \textbf{OH} & \textbf{R52} \\\hline
+                Bagging & 0.93 & 0.46 & 0.86 \\\hline
+                Boosting & 0.95 & 0.62 & 0.89 \\\hline
+                Convolutional Neural Network (CNN) & \textbf{0.97} & 0.72 & 0.95 \\\hline
+                Recurrent Convolutional Neural Network (RCNN) & 0.95 & 0.05 &  0.91\\\hline
+                Recurrent Neural Network (RNN) & \textbf{0.97} & 0.74  &  \textbf{0.98}\\\hline
+                Rocchio Classifier & 0.81 & 0.28 &  0.70\\\hline
+                Support Vector Machine (SVM) & 0.92 & 0.44 & 0.85 \\\hline
+                Graph Convolutional Neural Network (GCNN) & 0.96 & \textbf{0.85} & 0.91\\\hline
+            \end{tabular}
+        \item \textbf{Accuracy} :
+            \newline
+            \begin{tabular}{|c|c|c|c|}\hline
+                 \textbf{Model} & \textbf{R8} & \textbf{OH} & \textbf{R52} \\\hline
+                Bagging & 0.93 & 0.47 &  0.87\\\hline
+                Boosting & 0.95 & 0.62 & 0.89 \\\hline
+                Convolutional Neural Network (CNN) & \textbf{0.97} & 0.70 &  0.95\\\hline
+                Recurrent Convolutional Neural Network (RCNN) & 0.95 & 0.17 & 0.91 \\\hline
+                Recurrent Neural Network (RNN) & \textbf{0.97} & 0.74 &  \textbf{0.98}\\\hline
+                Rocchio Classifier & 0.80 & 0.27 &  0.64\\\hline
+                Support Vector Machine (SVM) & 0.92 & 0.48 &  0.86\\\hline
+                Graph Convolutional Neural Network (GCNN) & 0.96 & \textbf{0.85} & 0.93\\\hline
+            \end{tabular}
+    \end{itemize}    
+    \item Train 70\% and Validation 30\%:
+    \begin{itemize}
+        \item \textbf{Precision} : 
+            \newline
+            \begin{tabular}{|c|c|c|c|}\hline
+                 \textbf{Model} & \textbf{R8} & \textbf{OH} & \textbf{R52} \\\hline
+                Bagging & 0.93 & 0.60 &  0.87\\\hline
+                Boosting & 0.94 & 0.61 & 0.89 \\\hline
+                Convolutional Neural Network (CNN) & 0.97 & 0.66 &  \textbf{0.95}\\\hline
+                Recurrent Convolutional Neural Network (RCNN) & 0.95 & 0.65 &  0.90\\\hline
+                Recurrent Neural Network (RNN) & \textbf{0.98} & 0.72 & \textbf{0.95} \\\hline
+                Rocchio Classifier & 0.85 & 0.38 & 0.81 \\\hline
+                Support Vector Machine (SVM) & 0.92 & 0.47 & 0.85 \\\hline
+                Graph Convolutional Neural Network (GCNN) & 0.96 & \textbf{0.82} & 0.85\\\hline
+            \end{tabular}
+        \item \textbf{Recall} :
+            \newline
+            \begin{tabular}{|c|c|c|c|}\hline
+                 \textbf{Model} & \textbf{R8} & \textbf{OH} & \textbf{R52} \\\hline
+                Bagging & 0.93 & 0.60 & 0.87 \\\hline
+                Boosting & 0.94 & 0.60 &  0.89\\\hline
+                Convolutional Neural Network (CNN) & 0.97 & 0.51 & \textbf{0.95} \\\hline
+                Recurrent Convolutional Neural Network (RCNN) & 0.95 & 0.64 &  0.90\\\hline
+                Recurrent Neural Network (RNN) & \textbf{0.98} & 0.71 & \textbf{0.95}  \\\hline
+                Rocchio Classifier & 0.79 & 0.27 &  0.63\\\hline
+                Support Vector Machine (SVM) & 0.92 & 0.47 &  0.86\\\hline
+                Graph Convolutional Neural Network (GCNN) & 0.96 & \textbf{0.82} & 0.89\\\hline
+            \end{tabular}
+        \item \textbf{F1-Score} :
+            \newline
+            \begin{tabular}{|c|c|c|c|}\hline
+                 \textbf{Model} & \textbf{R8} & \textbf{OH} & \textbf{R52} \\\hline
+                Bagging & 0.93 & 0.60 & 0.86 \\\hline
+                Boosting & 0.94 & 0.61 &  0.89\\\hline
+                Convolutional Neural Network (CNN) & 0.97 & 0.53 &  \textbf{0.95}\\\hline
+                Recurrent Convolutional Neural Network (RCNN) & 0.95 & 0.63 &  0.89\\\hline
+                Recurrent Neural Network (RNN) & \textbf{0.98} & 0.71 & \textbf{0.95} \\\hline
+                Rocchio Classifier & 0.81 & 0.28 & 0.69 \\\hline
+                Support Vector Machine (SVM) & 0.92 & 0.43 &  0.85\\\hline
+                Graph Convolutional Neural Network (GCNN) & 0.96 & \textbf{0.82} & 0.87\\\hline
+            \end{tabular}
+        
+        \item \textbf{Accuracy} :
+            \newline
+            \begin{tabular}{|c|c|c|c|}\hline
+                 \textbf{Model} & \textbf{R8} & \textbf{OH} & \textbf{R52} \\\hline
+                Bagging & 0.93 & 0.60 & 0.87 \\\hline
+                Boosting & 0.94 & 0.62 & 0.89 \\\hline
+                Convolutional Neural Network (CNN) & 0.97 & 0.51 & \textbf{0.95} \\\hline
+                Recurrent Convolutional Neural Network (RCNN) & 0.95 & 0.64 &  0.90\\\hline
+                Recurrent Neural Network (RNN) & \textbf{0.98} & 0.71 & \textbf{0.95}  \\\hline
+                Rocchio Classifier & 0.79 & 0.27 &  0.63\\\hline
+                Support Vector Machine (SVM) & 0.92 & 0.47 &  0.86\\\hline
+                Graph Convolutional Neural Network (GCNN) & 0.96 & \textbf{0.82} & 0.89\\\hline
+            \end{tabular}
+    \end{itemize}
+\end{itemize}

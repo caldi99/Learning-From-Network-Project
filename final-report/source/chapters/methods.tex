@@ -1,0 +1,40 @@
+\section{Methods}
+The methods used for solving the Text Classification problem in this paper are :
+\begin{itemize}
+    \item Rocchio Classifier~\cite{paper-text-classification-algorithms}
+    \item Bagging Classifier~\cite{paper-text-classification-algorithms}
+    \item Boosting~\cite{paper-text-classification-algorithms}
+    \item Support Vector Machine~\cite{paper-text-classification-algorithms}
+    \item Convolution Neural Network~\cite{paper-text-classification-algorithms}
+    \item Recurrent Neural Network~\cite{paper-text-classification-algorithms}
+    \item Recurrent Convolutional Neural Network~\cite{paper-text-classification-algorithms}
+    \item Graph Convolutional Neural Network~\cite{paper-graph-convolution-network}
+\end{itemize}
+
+As is the case with many NLP models, our models, except the Graph Convolutional Neural Network, use word embeddings as inputs to determine the meaning and semantics of words.
+Rather than building our own word embedding model, we use a pre-trained one called "\textbf{GloVe}" (Global Vectors for Word Representation). In particular we use the "Glove.6B.50d.txt" file which contains the pre-trained word embeddings model that has been trained on a dataset of 6 billion words and has a vocabulary of 400,000 words. Each word in vocabulary is represented by a 50 dimensional vector.
+
+\subsection{Rocchio Classifier}
+\textbf{Rocchio Classifier}~\cite{paper-text-classification-algorithms} is implemented using a Nearest Centroid Model with the euclidean metrics.
+
+\subsection{Bagging Classifier}
+\textbf{Bagging Classifier}~\cite{paper-text-classification-algorithms} model use 10 KNeighborClassifier with uniform weights as estimators. Each estimator use 5 neighbors for the kneighbors query.
+
+\subsection{Boosting}
+\textbf{Boosting}~\cite{paper-text-classification-algorithms} model has 100 estimators.
+
+\subsection{Support Vector Machine}
+\textbf{Support Vector Machine (SVM)}~\cite{paper-text-classification-algorithms} model chosen is the standard linearSVC model. 
+
+\subsection{Convolutional Neural Network}
+The \textbf{Convolutional Neural Network}~\cite{paper-text-classification-algorithms}  model used has a first embedding layer that converts integers representing a text input into dense vectors, as for RNN and RCNN the input length is 500. Then there is two Convolutional layers, each of them has 128 filters and a kernel size equals to 5. Each convolutional layer is followed by a Dropout layer used to reduce overfitting in the model with a rate of 0.5. Both the dropout layers are followed by a max-pooling layer that reduces the dimensionality of the output of the convolutional layer; the first one has a size equal to 5, the second one size is 30. The final Dense layers reduces in three steps the number of units, first dense layer brings the units to 1024, the second one reduce them to 512, and the last  produces as output the probabilities for each class using the softmax function as activation function. The model also has an early stopping callback, which stops the training process if the validation loss does not improve for a certain number of epochs.
+The model is trained using stochastic gradient descent with an Adam optimizer and categorical cross-entropy loss.
+
+\subsection{Recurrent Neural Network}
+\textbf{Recurrent Neural Network}~\cite{paper-text-classification-algorithms} model used has a first embedding layer that converts integers representing a text input into dense vectors. Then we have 4 GRU (Gated Recurrent Units) layers, each of them maintains an internal state that encodes information about the input seen so far. Each GRU layer has 256 units and is followed by a Dropout layer with a 0.2 rate, used to reduce overfitting in the model. The final layer produces a 2D Tensor with X outputs units where X is the number of classes. The model also has an early stopping callback, which stops the training process if the validation loss does not improve for a certain number of epochs.
+
+\subsection{Recurrent Convolutional Neural Network}
+The \textbf{Recurrent Convolutional Neural Network}~\cite{paper-text-classification-algorithms} model combine the RNN and CNN techniques in order to take advantage of both of them. Our model has a first embedding layer that converts integers representing a text input into dense vectors. After the embedding layer there is a dropout layer with a 0.25 dropout rate. Then, after this first embedding parts there are the “Convolutional layers” that consits of 4 layers of 1D Convolution with 256 filters and kernel size equals to 2, alternated with 1D MaxPooling  layers with pool size equals to 2. Next, there are the “Recurrent layers”, in particular, we used LSTM layers with 256 units, with a own Dropout rate of 0,25, in order to be able to capture long-term dependencies. In the end, two Dense layers produce as output the class probabilities for the input, using the softmax function as activation function. The first Dense layer reduces the output to 1024 units, while, the second one to the number of classes of the dataset. The model also has an early stopping callback, which stops the training process if the validation loss does not improve for a certain number of epochs.
+
+\subsection{Graph Convolutional Neural Network}
+The \textbf{Graph Convolutional Neural Network}~\cite{paper-graph-convolution-network}, is constructed using the Deep Graph Library, in particular from a corpus of text documents, with nodes representing either individual words or documents. We create edges between nodes based on word co-occurrences in the documents and across the entire corpus. The weight of an edge between a document node and a word node is calculated using the term frequency-inverse document frequency (TF-IDF) of the word in the document instead of the GloVe approach used for other methods. To incorporate global word co-occurrence information, a sliding window of size equal to 20 is used to gather co-occurrence statistics, and the pointwise mutual information (PMI) measure is used to calculate the weights between word nodes. The embedding size of the first convolutional layer is 200. The train process is made using backpropagation to compute the gradient of loss function, then we use the Adam optimizer with a learning rate equal to 0.02, we repeat this process for 100 epoch or until the early stopping callback is called. 

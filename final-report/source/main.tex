@@ -1,0 +1,45 @@
+\documentclass{article}
+
+% ------------------------------------------------------
+% PACKAGES
+% ------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{etoolbox}
+\usepackage{multirow}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+% ------------------------------------------------------
+% DIMENSIONS OF THE PAGES
+% ------------------------------------------------------
+\geometry{
+ a4paper,
+ total={190mm,257mm},
+ left = 30mm,
+ right = 30mm,
+ top = 25mm,
+ bottom = 25mm
+}
+
+
+
+\begin{document}
+\input{titlepage.tex}
+\tableofcontents\newpage
+% ------------------------------------------------------
+% NO IDENTATION
+% ------------------------------------------------------
+\setlength{\parindent}{0pt}
+
+% ------------------------------------------------------
+% CHAPTERS
+% ------------------------------------------------------
+\input{chapters/introduction.tex} % OK
+\input{chapters/datasets.tex} % OK
+\input{chapters/methods.tex}
+\input{chapters/results.tex}
+\input{chapters/conclusions.tex}
+\input{chapters/references.tex}
+\end{document}
